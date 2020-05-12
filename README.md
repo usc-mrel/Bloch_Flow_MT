@@ -7,6 +7,6 @@ https://doi.org/10.1002/mrm.28304.
 
 Nam Gyun Lee, University of Southern California, MREL (Magnetic Resonance Engineering Laboratory, PI: Krishna S. Nayak, https://mrel.usc.edu/) May 2020.
 
-I welcome any suggestions/questions and exchange of MR related ideas. Please feel free to contact me at namgyunl@usc.edu.
+Your suggestions and comments will be greatly appreciated. Please feel free to contact me at namgyunl@usc.edu.
 
 Thank you and have a nice day!
