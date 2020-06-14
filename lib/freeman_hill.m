@@ -1,4 +1,8 @@
 % Freeman Hill SSFP steady state formula
+%
+% This function is copied from the ihMT_steadystate package published by 
+% Shaihan Malik (King's College London), available here:
+% https://github.com/mriphysics/ihMT_steadystate
 
 function Mss = freeman_hill(flipangle,TR,R1,R2)
 

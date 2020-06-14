@@ -1,13 +1,15 @@
 % demo_Su_2017_MRM_MRF_ASL.m
 % Written by Namgyun Lee
 % Email: namgyunl@usc.edu, ggang56@gmail.com (preferred)
-% Started: 10/07/2019, Last modified: 10/15/2019
+% Started: 10/07/2019, Last modified: 06/13/2020
 
 %% Clean slate
 close all; clear all; clc;
 
 %% Add paths
-addpath(genpath('D:\ASL_project\mfiles_nam\Bloch_Flow_MT'));
+addpath(genpath('..\..\Bloch_Flow_MT'));
+
+%% Initialize a random number generator
 rng('default');
 
 %% Define simulation parameters
@@ -191,21 +193,43 @@ taus = zeros(N,1, 'double'); % [sec]
 index_offset = 0;
 for idx = 1:nr_TRs
     %----------------------------------------------------------------------
-    % Calculate the number of samples in a current block
+    % Timing diagram:
+    %
+    % labeling1          labeling2
+    % |                  |                  |
+    % |     BLOCK1      RF1     BLOCK2     RF2
+    % |                  |                  |
+    % |        TR1       |        TR2       |
+    % |<---------------->|<---------------->|
+    % |                  |                  |
+    % +------+------+------+------+------+------+------+------+------> time
+    % 0      dt    2dt    3dt    4dt    5dt    6dt 
+    % x      x      x    x      x      x      : 6 start times (t)
+    % |<---->|<---->|<-->|<---->|<---->|<-->|
+    %    1      2     3                       : 3 timesteps (tau)
+    %                       1      2     3    : 3 timesteps (tau)
+    % N: ceil(5.5dt/dt) = 6 timesteps
     %----------------------------------------------------------------------
-    nr_samples = ceil(TRs(idx) / dt);
+    nr_timesteps = ceil(TRs(idx) / dt); % equal to the number of samples per a timestep
+    index_range = (1:nr_timesteps).' + index_offset;
 
     %----------------------------------------------------------------------
-    % current Mz index range
+    % Calculate b1
     %----------------------------------------------------------------------
-    index_range = (1:nr_samples).' + index_offset;
-
     if idx ~= nr_TRs
         % [rad] / [sec] / [rad/sec/uT] => [uT]
         b1(index_range(end)+1) = (flip * B1) / dt / gam; % [uT]
     end
-    taus(index_range) = [dt * ones(nr_samples-1,1, 'double'); TRs(idx) - (nr_samples-1) * dt]; 
-    index_offset = index_offset + nr_samples;
+
+    %----------------------------------------------------------------------
+    % Calculate the duration (tau)
+    %----------------------------------------------------------------------
+    taus(index_range) = cat(1, dt * ones(nr_timesteps-1,1, 'double'), TRs(idx) - (nr_timesteps-1) * dt); % [sec]
+
+    %----------------------------------------------------------------------
+    % Update the starting index of a next block
+    %----------------------------------------------------------------------
+    index_offset = index_offset + nr_timesteps;
 end
 
 %% Perform Bloch-Flow simulation
@@ -371,4 +395,4 @@ ylabel('Signal / M_0 (%)');
 title('Difference (GKM - Numeric (T_2=0 msec,\Deltaf=0 Hz))');
 
 %% Save as a .tiff file
-export_fig('comparison_MRF_vs_Bloch_flow', '-r600', '-tif');
+export_fig('../../figs/figure5', '-r600', '-tif');

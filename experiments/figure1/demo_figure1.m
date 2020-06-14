@@ -6,6 +6,9 @@
 %% Clean slate
 close all; clear all; clc;
 
+%% Add paths
+addpath(genpath('..\..\Bloch_Flow_MT'));
+
 %% Plot options
 HeadLength = 5;
 HeadWidth = 5;
@@ -79,7 +82,10 @@ for idx = 1:N
     % RF arrows
     %----------------------------------------------------------------------
     if idx > 1
-        h = drawArrow([t(idx); 0], [t(idx); 0.7], RF_color);
+        %h = drawArrow([t(idx); 0], [t(idx); 0.7], RF_color);
+        %h = stem([t(idx); t(idx)], [0; 0.7],  'color', RF_color, 'LineWidth', 6);
+        h = stem(t(idx), 0.7, '.', 'color', RF_color, 'LineWidth', 4, 'MarkerSize', 30);
+        axis equal;
         if idx == 2
             set(h, 'HandleVisibility', 'on');
         else
@@ -91,7 +97,7 @@ for idx = 1:N
     % flip angle and phase
     %----------------------------------------------------------------------
     if idx > 1
-        hRF = text(t(idx), 0.7, sprintf('$$\\theta_{%s},\\phi_{%s}$$', number, number), 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'FontSize', 16, 'Interpreter', 'latex');
+        hRF = text(t(idx), 0.75, sprintf('$$\\mathbf{u}_{%s},\\theta_{%s}$$', number, number), 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'FontSize', 16, 'Interpreter', 'latex');
         set(hRF, 'Color', 'k');
     end
 
@@ -205,4 +211,4 @@ set(gca, 'Box', 'on');
 axis off;
 
 %% Save as a .tiff file
-export_fig('Figure1', '-r864', '-tif');
+export_fig('../../figs/figure1', '-m2', '-tif', '-c[140,410,120,595]'); % [top,right,bottom,left]

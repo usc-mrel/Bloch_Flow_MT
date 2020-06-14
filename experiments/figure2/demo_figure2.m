@@ -7,7 +7,7 @@
 close all; clear all; clc;
 
 %% Add paths
-addpath(genpath('D:\ASL_project\mfiles_nam\Bloch_Flow_MT'));
+addpath(genpath('..\..\Bloch_Flow_MT'));
 
 %% Define simulation parameters
 % Used the recommended parameters from the consensus paper
@@ -282,4 +282,4 @@ position2 = get(hYLabel2, 'Position');
 set(hYLabel1, 'Position', [position2(1) position1(2) position1(3)]);
 
 %% Save as a .tiff file
-export_fig('Figure2', '-r864', '-tif');
+export_fig('../../figs/figure2', '-r864', '-tif');

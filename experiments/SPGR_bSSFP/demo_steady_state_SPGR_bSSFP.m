@@ -7,9 +7,7 @@
 close all; clear all; clc;
 
 %% Add paths
-addpath D:\ASL_project\mfiles_nam\Bloch-Flow\lib;
-addpath D:\ASL_project\mfiles_nam\Bloch-Flow\experiments\SPGR;
-addpath D:\ASL_project\mfiles_nam\Bloch-Flow\experiments\Gloor_2008_MRM;
+addpath(genpath('..\..\Bloch_Flow_MT'));
 
 %% Define parameters for white matter at 1.5T
 M0f    = 1;          % equilibrium magnetiztion of the free pool
@@ -224,4 +222,4 @@ hLegend = legend('Exact  , no MT, no flow' , 'Exact  , no MT,      flow' , 'Exac
 set(hLegend, 'FontSize', 12);
 title('SPGR', 'FontSize', FontSize);
 %%
-export_fig('steady_state_BMF_bSSFP_SPGR', '-r864', '-tif');
+export_fig('../../figs/figureS2', '-r864', '-tif');

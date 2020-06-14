@@ -7,7 +7,7 @@
 close all; clear all; clc;
 
 %% Add paths
-addpath(genpath('D:\ASL_project\mfiles_nam\Bloch_Flow_MT'));
+addpath(genpath('..\..\Bloch_Flow_MT'));
 
 %% Define simulation parameters
 T1      = 1.4;          % spin-lattice relaxation time of myocardium at 3T [sec]
@@ -259,19 +259,5 @@ text(-12    , 0.21+0.98, '(b)', 'FontWeight', 'bold', 'FontSize', 12);
 text(-12-105, 0.21     , '(c)', 'FontWeight', 'bold', 'FontSize', 12);
 text(-12    , 0.21     , '(d)', 'FontWeight', 'bold', 'FontSize', 12);
 
-figure;
-subplot(2,2,1);
-plot(difference1);
-
-subplot(2,2,2);
-plot(difference2);
-
-subplot(2,2,3);
-plot(difference3);
-
-subplot(2,2,4);
-plot(difference4);
-
-
 %% Save as a .tiff file
-%export_fig('comparison_cineASL_vs_Bloch_flow', '-r864', '-tif');
+export_fig('../../figs/figure4', '-r864', '-tif');

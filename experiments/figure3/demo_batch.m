@@ -1,6 +1,6 @@
 % demo_batch.m
 
-demo_figure3_PASL_high_parameter_sweep;
-demo_figure3_PASL_low_parameter_sweep;
-demo_figure3_PCASL_high_parameter_sweep;
-demo_figure3_PCASL_low_parameter_sweep;
+demo_figure3_PASL_high_perfusion_parameter_sweep;
+demo_figure3_PASL_low_perfusion_parameter_sweep;
+demo_figure3_PCASL_high_perfusion_parameter_sweep;
+demo_figure3_PCASL_low_perfusion_parameter_sweep;
