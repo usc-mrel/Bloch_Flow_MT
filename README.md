@@ -9,4 +9,3 @@ Nam Gyun Lee, University of Southern California, MREL (Magnetic Resonance Engine
 
 Your suggestions and comments will be greatly appreciated. Please feel free to contact me at namgyunl@usc.edu.
 
-Thank you and have a nice day!
